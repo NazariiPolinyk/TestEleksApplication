@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TestEleksApplication.DataLayer\TestEleksApplication.DataLayer.csproj" />
+    <ProjectReference Include="..\TestEleksApplication.Interfaces\TestEleksApplication.Interfaces.csproj" />
+  </ItemGroup>
+
+</Project>
