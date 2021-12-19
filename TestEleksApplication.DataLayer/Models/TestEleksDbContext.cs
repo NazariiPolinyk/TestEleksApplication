@@ -20,10 +20,8 @@ namespace TestEleksApplication.DataLayer.Models
             {
                 entity.ToTable("Student");
 
-                entity.Property(e => e.FirstName).IsRequired()
-                                                 .HasMaxLength(20);
-                entity.Property(e => e.LastName).IsRequired()
-                                                .HasMaxLength(20);
+                entity.Property(e => e.FirstName).IsRequired().HasMaxLength(20);
+                entity.Property(e => e.LastName).IsRequired().HasMaxLength(20);
             });
             modelBuilder.Entity<User>(entity =>
             {
