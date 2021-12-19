@@ -3,9 +3,13 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 using TestEleksApplication.DataLayer.Models;
 using Microsoft.EntityFrameworkCore;
+using TestEleksApplication.Services.AuthenticationService;
+using System.Text;
+using TestEleksApplication.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 namespace TestEleksApplication.Infrastructure
 {
@@ -22,11 +26,31 @@ namespace TestEleksApplication.Infrastructure
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<TestEleksDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddCors();
             services.AddControllers();
-            services.AddSwaggerGen(c =>
+            var tokenOptionsSection = Configuration.GetSection("TokenOptions");
+            services.Configure<TokenOptions>(tokenOptionsSection);
+
+            var tokenOptions = tokenOptionsSection.Get<TokenOptions>();
+            var key = Encoding.ASCII.GetBytes(tokenOptions.Secret);
+            services.AddAuthentication(x =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "TestEleksApplication", Version = "v1" });
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
             });
+            services.AddScoped<IAuthService, AuthService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,14 +59,29 @@ namespace TestEleksApplication.Infrastructure
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TestEleksApplication v1"));
             }
+
+            app.Use(async (context, next) =>
+            {
+                context.Request.Cookies.TryGetValue("Token", out string token);
+                if (!string.IsNullOrEmpty(token))
+                {
+                    context.Request.Headers.Add("Authorization", "Bearer " + token);
+                }
+                await next();
+            });
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
+            app.UseCors(x => x
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
+
+            app.UseCookiePolicy();
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

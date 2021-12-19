@@ -3,9 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31702.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestEleksApplication.Infrastructure", "TestEleksApplication\TestEleksApplication.Infrastructure.csproj", "{3348CF6F-F9F3-4BBF-A008-4AC404BD592A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestEleksApplication.Infrastructure", "TestEleksApplication\TestEleksApplication.Infrastructure.csproj", "{3348CF6F-F9F3-4BBF-A008-4AC404BD592A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestEleksApplication.DataLayer", "TestEleksApplication.DataLayer\TestEleksApplication.DataLayer.csproj", "{9A481A5D-04B1-4B79-B196-F5C4237EF79A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestEleksApplication.DataLayer", "TestEleksApplication.DataLayer\TestEleksApplication.DataLayer.csproj", "{9A481A5D-04B1-4B79-B196-F5C4237EF79A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestEleksApplication.Interfaces", "TestEleksApplication.Interfaces\TestEleksApplication.Interfaces.csproj", "{A42F160A-F96F-4916-BFAB-C338E9BA1E82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestEleksApplication.Services", "TestEleksApplication.Services\TestEleksApplication.Services.csproj", "{AE594FA0-CE0E-4793-93C4-1A904598209E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestEleksApplication.Presentation", "TestEleksApplication.Presentation\TestEleksApplication.Presentation.csproj", "{ADA70EF9-C019-4E76-827E-C0A3BAB36B8A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +27,18 @@ Global
 		{9A481A5D-04B1-4B79-B196-F5C4237EF79A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A481A5D-04B1-4B79-B196-F5C4237EF79A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A481A5D-04B1-4B79-B196-F5C4237EF79A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A42F160A-F96F-4916-BFAB-C338E9BA1E82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A42F160A-F96F-4916-BFAB-C338E9BA1E82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A42F160A-F96F-4916-BFAB-C338E9BA1E82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A42F160A-F96F-4916-BFAB-C338E9BA1E82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE594FA0-CE0E-4793-93C4-1A904598209E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE594FA0-CE0E-4793-93C4-1A904598209E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE594FA0-CE0E-4793-93C4-1A904598209E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE594FA0-CE0E-4793-93C4-1A904598209E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADA70EF9-C019-4E76-827E-C0A3BAB36B8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADA70EF9-C019-4E76-827E-C0A3BAB36B8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADA70EF9-C019-4E76-827E-C0A3BAB36B8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADA70EF9-C019-4E76-827E-C0A3BAB36B8A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
